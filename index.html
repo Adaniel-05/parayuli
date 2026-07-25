@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para ti, mi amor</title>
+    <style>
+        /* Fondo degradado rojo vino profundo y ajustes generales */
+        body {
+            background: linear-gradient(135deg, #2A0105 0%, #4D0000 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Quicksand', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden; 
+            text-align: center;
+            position: relative;
+        }
+
+        /* Capa para las estrellitas de fondo */
+        .estrellas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .estrella {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.85);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: parpadear var(--duracion) ease-in-out infinite alternate;
+        }
+
+        @keyframes parpadear {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Título aesthetic */
+        h1 {
+            color: #FBF1D1;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            font-weight: 700;
+            z-index: 10;
+        }
+
+        /* Contenedor y diseño del botón de Kuromi */
+        .contenedor-kuromi {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Brillo rosa pastel detrás de Kuromi */
+        .contenedor-kuromi::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(255,182,193,0.8) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+
+        #botonKuromi {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.1s;
+            -webkit-tap-highlight-color: transparent; 
+            animation: flotarKuromi 3s ease-in-out infinite;
+        }
+
+        /* Ajuste de la imagen de Kuromi */
+        #botonKuromi img {
+            width: 140px; 
+            pointer-events: none; /* Evita que la imagen se arrastre en celulares */
+        }
+
+        /* Animación suave para que flote */
+        @keyframes flotarKuromi {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Efecto al presionar a Kuromi */
+        #botonKuromi:active {
+            transform: scale(0.85) !important;
+        }
+
+        /* Estilo de las burbujas flotantes de mensajes */
+        .burbuja {
+            position: absolute;
+            background: #FBF1D1;
+            color: #4D0000; 
+            padding: 14px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.05rem;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1.5px solid #FBF1D1;
+            pointer-events: none; 
+            animation: flotarMensaje 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            z-index: 20; 
+            white-space: normal; 
+            max-width: 85vw; 
+            text-align: center; 
+            box-sizing: border-box; 
+        }
+
+        /* Animación para centrar los mensajes desde su origen */
+        @keyframes flotarMensaje {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(0) scale(0.6) rotate(-5deg);
+            }
+            12% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-50px) scale(1.05) rotate(3deg);
+            }
+            25% {
+                transform: translateX(-50%) translateY(-100px) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-600px) scale(0.85); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="estrellas" id="contenedorEstrellas"></div>
+
+    <h1>presiona a kuromi ❤️</h1>
+    
+    <div class="contenedor-kuromi">
+        <!-- Imagen de Kuromi en formato GIF o PNG -->
+        <button id="botonKuromi">
+            <img src="https://media.tenor.com/J3-z1aY-QeAAAAAi/kuromi-heart.gif" alt="Kuromi con corazón">
+        </button>
+    </div>
+
+    <script>
+        // Generar estrellitas bonitas de forma aleatoria al cargar la página
+        const contenedorEstrellas = document.getElementById('contenedorEstrellas');
+        const totalEstrellas = 45; 
+
+        for (let i = 0; i < totalEstrellas; i++) {
+            const estrella = document.createElement('div');
+            estrella.classList.add('estrella');
+            
+            const tamaño = Math.random() * 8 + 6; 
+            estrella.style.width = tamaño + 'px';
+            estrella.style.height = tamaño + 'px';
+            
+            estrella.style.left = Math.random() * 100 + 'vw';
+            estrella.style.top = Math.random() * 100 + 'vh';
+            
+            estrella.style.setProperty('--duracion', (Math.random() * 2 + 1) + 's');
+            
+            contenedorEstrellas.appendChild(estrella);
+        }
+
+        // Mensajes bonitos y románticos
+        const mensajes = [
+            "me encanta esto que estamos construyendo juntos",
+            "gracias por aparecer en mi vida",
+            "me gusta mucho cómo nos tratamos con tanto amor",
+            "espero siempre valorarte como te mereces",
+            "te quiero cuidar muchísimo",
+            "eres muy especial para mí, de verdad",
+            "no sabes cómo ansío cada momento contigo",
+            "quiero hacer las cosas bien contigo",
+            "siempre voy a estar para ti",
+            "te ganaste un lugar enorme en mi vida y en mi día",
+            "veamos muchas películas juntos",
+            "siempre me haces reír",
+            "ojalá los 100 mensajes en cada chat sean por siempre",
+            "quiero conocerte tal y como eres cada día más",
+            "eres la mejor",
+            "no te desaparezcas nunca de mi vida",
+            "salgamos a muchos lugares hermosos",
+            "espero que esto crezca cada vez más",
+            "eres mi persona favorita",
+            "gracias a ti mi vida gris tiene color",
+            "agradezco tanto haberme cruzado contigo",
+            "mi vida sin ti sería muy aburrida",
+            "haces que este mundo caótico sea un lugar más bonito",
+            "si hubiera otra vida, te buscaría nuevamente",
+            "me alegra cuando te abres a mí y me dejas conocerte más",
+            "me encanta escucharte hablar de cosas que te gustan",
+            "tus mensajes siempre me cambian el día, te lo juro",
+            "contigo puedo ser 100% yo, sin filtros",
+            "gracias por siempre escucharme",
+            "me fascina ver cómo compartes tu día conmigo",
+            "quiero que recuerdes que siempre voy a estar ahí",
+            "ojalá te vieras a través de mis ojos para que veas lo perfecta que eres",
+            "quiero llegar hasta viejitos contigo, y reírnos de las mismas tonteras",
+            "siempre voy a celebrar tus logros como si fueran míos",
+            "tienes esa magia de hacer que un día normal sea especial",
+            "hay personas que son estrellas, pero tú eres el cielo entero",
+            "eres el verso más bonito que se escribió en mi vida",
+            "qué bonito es coincidir en el mismo tiempo que tú",
+            "me gusta descifrar cada día tu forma de quererme",
+            "quédate siempre cerquita porfa", 
+            "te quiero demasiado"
+        ];
+
+        const botonKuromi = document.getElementById('botonKuromi');
+
+        botonKuromi.addEventListener('click', () => {
+            const burbuja = document.createElement('div');
+            burbuja.classList.add('burbuja');
+
+            const mensajeAleatorio = mensajes[Math.floor(Math.random() * mensajes.length)];
+            burbuja.innerText = mensajeAleatorio;
+
+            const randomX = Math.floor(Math.random() * 60) + 20; 
+            burbuja.style.left = randomX + 'vw';
+            
+            burbuja.style.bottom = '42vh';
+
+            document.body.appendChild(burbuja);
+
+            setTimeout(() => {
+                burbuja.remove();
+            }, 6000);
+        });
+    </script>
+
+</body>
+</html>
