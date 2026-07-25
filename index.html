@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para ti, mi amor</title>
+    <title>para yuli❤️</title>
     <style>
         /* Fondo degradado rojo vino profundo y ajustes generales */
         body {
@@ -44,59 +44,64 @@
             100% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Título aesthetic */
+        /* Título principal (Encabezado) */
         h1 {
             color: #FBF1D1;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
             padding: 0 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
             font-weight: 700;
             z-index: 10;
         }
 
-        /* Contenedor y diseño del botón de Kuromi */
-        .contenedor-kuromi {
+        /* Subtítulo de instrucción */
+        .instruccion {
+            color: #FFD1DC;
+            font-size: 1.15rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            font-weight: 500;
+        }
+
+        /* Contenedor y diseño del botón del corazón */
+        .contenedor-corazon {
             position: relative;
             z-index: 10;
         }
 
-        /* Brillo rosa pastel detrás de Kuromi */
-        .contenedor-kuromi::before {
+        /* Brillo rosa pastel detrás del corazón */
+        .contenedor-corazon::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             background: radial-gradient(circle, rgba(255,182,193,0.8) 0%, rgba(255,255,255,0) 70%);
             z-index: -1;
         }
 
-        #botonKuromi {
+        #botonCorazon {
             background: none;
             border: none;
+            font-size: 100px; 
             cursor: pointer;
             transition: transform 0.1s;
             -webkit-tap-highlight-color: transparent; 
-            animation: flotarKuromi 3s ease-in-out infinite;
+            animation: flotarCorazon 3s ease-in-out infinite;
         }
 
-        /* Ajuste de la imagen de Kuromi */
-        #botonKuromi img {
-            width: 140px; 
-            pointer-events: none; /* Evita que la imagen se arrastre en celulares */
-        }
-
-        /* Animación suave para que flote */
-        @keyframes flotarKuromi {
+        /* Animación suave para que flote el corazón */
+        @keyframes flotarCorazon {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        /* Efecto al presionar a Kuromi */
-        #botonKuromi:active {
+        /* Efecto al presionar el corazón */
+        #botonCorazon:active {
             transform: scale(0.85) !important;
         }
 
@@ -114,13 +119,15 @@
             pointer-events: none; 
             animation: flotarMensaje 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             z-index: 20; 
+            
+            /* Ajustes estrictos para que no se pierda en celular */
             white-space: normal; 
             max-width: 85vw; 
             text-align: center; 
             box-sizing: border-box; 
         }
 
-        /* Animación para centrar los mensajes desde su origen */
+        /* Animación optimizada para celulares */
         @keyframes flotarMensaje {
             0% {
                 opacity: 0;
@@ -144,13 +151,11 @@
 
     <div class="estrellas" id="contenedorEstrellas"></div>
 
-    <h1>presiona a kuromi ❤️</h1>
+    <h1>para yuli❤️</h1>
+    <div class="instruccion">Presiona el corazón, mi amor</div>
     
-    <div class="contenedor-kuromi">
-        <!-- Imagen de Kuromi en formato GIF o PNG -->
-        <button id="botonKuromi">
-            <img src="https://media.tenor.com/J3-z1aY-QeAAAAAi/kuromi-heart.gif" alt="Kuromi con corazón">
-        </button>
+    <div class="contenedor-corazon">
+        <button id="botonCorazon">💗</button>
     </div>
 
     <script>
@@ -219,9 +224,9 @@
             "te quiero demasiado"
         ];
 
-        const botonKuromi = document.getElementById('botonKuromi');
+        const botonCorazon = document.getElementById('botonCorazon');
 
-        botonKuromi.addEventListener('click', () => {
+        botonCorazon.addEventListener('click', () => {
             const burbuja = document.createElement('div');
             burbuja.classList.add('burbuja');
 
